@@ -6,9 +6,9 @@
 
 To start, clone this repository locally onto your machine or download it as a .ZIP file.
 
-Once you have the repository on your machine, following the steps to get started:
+Once you have the repository on your machine, follow the steps to get started:
 
-## Initial configuration
+### Initial configuration
 
 - Set up your `.env` files - you will need a `.env` file in the `api` directory (to be used by the backend to authenticate into the Serialized API). You will need a [Serialized](https://serialized.io/) account and within that, a project created in your account.
 - Your `.env` file will look like this:
@@ -27,7 +27,7 @@ Once your `.env` is set up, install dependencies. You'll need to do the followin
 - In the `api` directory, run `npm install` (installs general back-end dependencies)
 - In the `client` directory, run `npm install` (installs React project dependencies)
 
-## Run application
+### Run application
 
 To run your aplication, open a new window or tab in the Terminal so that you have two tabs or windows open.
 In one tab, run `npm start` in the `api` folder. (The back-end will run on `localhost:9000`)
