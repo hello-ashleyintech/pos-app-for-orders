@@ -4,7 +4,7 @@ import POSHome from "./components/POSHome";
 function App() {
   return (
     <div className="App">
-        <POSHome />
+      <POSHome />
     </div>
   );
 }

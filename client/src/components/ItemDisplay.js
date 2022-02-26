@@ -33,7 +33,7 @@ export default function ItemDisplay(props) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-  
+
     // if order was successful
     if (order.status === 200) {
       props.setStartedOrder(false);
@@ -82,16 +82,16 @@ export default function ItemDisplay(props) {
         onClick={() => {
           completeOrder();
         }}
-        >
-          Complete Order
+      >
+        Complete Order
       </button>
       <button
         onClick={() => {
           exitOrder();
         }}
-        >
-          Exit Order
-        </button>
+      >
+        Exit Order
+      </button>
     </div>
   );
 }

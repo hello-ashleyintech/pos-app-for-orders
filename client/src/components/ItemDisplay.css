@@ -1,15 +1,15 @@
 ul {
-list-style-type: none;
+  list-style-type: none;
 }
 
 .receiptEntry {
-justify-content: space-between;
-margin: auto;
-width: 200px;
-display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: 200px;
+  display: flex;
 }
 
 .receipt {
-margin: auto;
-width: 50%;
+  margin: auto;
+  width: 50%;
 }
