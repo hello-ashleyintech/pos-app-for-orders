@@ -4,7 +4,7 @@
 
 ## Getting started
 
-To start, clone this repository locally onto your machine or download it as a .ZIP file.
+To start, fork it and then clone this repository locally onto your machine or download it as a .ZIP file.
 
 Once you have the repository on your machine, follow the steps to get started:
 
