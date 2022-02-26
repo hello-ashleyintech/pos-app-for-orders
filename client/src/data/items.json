@@ -1,0 +1,16 @@
+{
+    "items": [
+        {
+            "name": "Tea",
+            "cost": 3.99
+        },
+        {
+            "name": "Coffee",
+            "cost": 4.99
+        },
+        {
+            "name": "Bagel",
+            "cost": 2.50
+        }
+    ]
+}

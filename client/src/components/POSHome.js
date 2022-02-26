@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import ItemDisplay from "./ItemDisplay";
 
 export default function POSHome() {
+  const [startedOrder, setStartedOrder] = useState(false);
 
   async function createOrder() {
     var generatedOrderId = crypto.randomUUID();
@@ -10,14 +12,23 @@ export default function POSHome() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
+    // if order was successful
+    if (order.status === 200) {
+      setStartedOrder(true);
+    }
   }
 
   return (
     <div>
       <h1>POS System ☕️</h1>
-      <div>
-        <button onClick={createOrder}>Create Order</button>
-      </div>
+      {!startedOrder && (
+        <div>
+          <button onClick={createOrder}>Create Order</button>
+        </div>
+      )}
+      {startedOrder && (
+        <ItemDisplay />
+      )}
     </div>
   );
 }
