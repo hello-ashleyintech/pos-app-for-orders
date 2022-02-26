@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ItemDisplay from "./ItemDisplay";
+import "./POSHome.css";
 
 export default function POSHome() {
   const [startedOrder, setStartedOrder] = useState(false);

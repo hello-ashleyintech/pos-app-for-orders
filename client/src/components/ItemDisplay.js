@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./ItemDisplay.css";
 
 export default function ItemDisplay(props) {
   var data = require("../data/items.json");
