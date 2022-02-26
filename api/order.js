@@ -16,12 +16,42 @@ class Order {
       if (!orderId || orderId.length !== 36) throw "Invalid orderId";
       return [DomainEvent.create(new OrderCreated(orderId))];
     }
+    
+    addItem(itemName, itemPrice) {
+      if (this.completed)
+        throw "List cannot be changed since it has been completed";
+      return [DomainEvent.create(new ItemAdded(this.orderId, itemName, itemPrice))];
+    }
+
+    completeOrder(total) {
+      if (!this.completed) {
+        return [DomainEvent.create(new OrderCompleted(this.orderId, total))];
+      } else {
+        // Don't emit event if already completed
+        return [];
+      }
+    }
   
     get eventHandlers() {
       return {
         OrderCreated(state, event) {
           console.log("Handling OrderCreated", event);
           return OrderState.newState(event.orderId).withOrderId(event.orderId);
+        },
+        ItemAdded(state, event) {
+          console.log("Handling ItemAdded", event);
+          return new Order(state).addItem({
+            orderId: event.orderId,
+            itemName: event.itemName,
+            itemPrice: event.itemPrice,
+          });
+        },
+        OrderCompleted(state, event) {
+          console.log("Handling OrderCompleted", event);
+          return new Order(state).completeOrder({
+            orderId: event.orderId,
+            total: event.total,
+          });
         },
       };
     }
@@ -30,6 +60,21 @@ class Order {
 class OrderCreated {
   constructor(orderId) {
     this.orderId = orderId;
+  }
+}
+
+class ItemAdded {
+  constructor(orderId, itemName, itemPrice) {
+    this.orderId = orderId;
+    this.itemName = itemName;
+    this.itemPrice = itemPrice;
+  }
+}
+
+class OrderCompleted {
+  constructor(orderId, total) {
+    this.orderId = orderId;
+    this.total = total;
   }
 }
 
@@ -48,6 +93,14 @@ class OrderState {
     withOrderId(orderId) {
       return Object.assign({}, this, { orderId });
     }
+
+    addItem(itemName, itemPrice) {
+      return Object.assign({}, this, { items: this.items.unshift({itemName: itemName, itemPrice: itemPrice}) });
+    }
+
+    completeOrder(total) {
+      return Object.assign({}, this, { completed: true, total: total });
+    }
 }
 
-module.exports = { Order, OrderCreated, OrderState };
+module.exports = { Order };

@@ -3,6 +3,7 @@ import ItemDisplay from "./ItemDisplay";
 
 export default function POSHome() {
   const [startedOrder, setStartedOrder] = useState(false);
+  const [orderId, setOrderId] = useState("");
 
   async function createOrder() {
     var generatedOrderId = crypto.randomUUID();
@@ -15,6 +16,7 @@ export default function POSHome() {
     // if order was successful
     if (order.status === 200) {
       setStartedOrder(true);
+      setOrderId(generatedOrderId);
     }
   }
 
@@ -27,7 +29,7 @@ export default function POSHome() {
         </div>
       )}
       {startedOrder && (
-        <ItemDisplay />
+        <ItemDisplay orderId={orderId} setStartedOrder={setStartedOrder} />
       )}
     </div>
   );

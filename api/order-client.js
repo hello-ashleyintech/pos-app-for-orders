@@ -21,6 +21,22 @@ class OrderClient {
         })
     );
   }
+  async addItem(orderId, itemName, itemPrice) {
+    await handleError(
+      async () =>
+        await this.client.update(orderId, (order) => {
+          return order.addItem(itemName, itemPrice);
+        })
+    );
+  }
+  async completeOrder(orderId, total) {
+    await handleError(
+      async () =>
+        await this.client.update(orderId, (order) => {
+          return order.completeOrder(total);
+        })
+    );
+  }
 }
 
 module.exports = OrderClient;
